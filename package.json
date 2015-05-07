@@ -20,6 +20,8 @@
     "tape": "^3.0.3"
   },
   "dependencies": {
-    "event-emitter": "^0.3.3"
+    "event-emitter": "^0.3.3",
+    "listento-emitter": "^0.1.0",
+    "simple-extend": "^0.1.0"
   }
 }

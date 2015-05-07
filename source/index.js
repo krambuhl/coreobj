@@ -1,14 +1,19 @@
 import EventEmitter from 'event-emitter';
+import ListenToEmitter from 'listeto-emitter';
 import extend from 'simple-extend';
 
 export default class CoreObject extends EventEmitter {
   constructor(opts={}) {
+    if (this.beforeSetup) this.beforeSetup(...arguments);
     super(...arguments);
+    ListenToEmitter.mixin(this);
+
     if (this.setup) this.setup(...arguments);
+    if (this.afterSetup) this.afterSetup(...arguments);
   }
 
   get(prop) {
-    return this[prop];
+    return this[prop]
   }
 
   set(prop, val) {
