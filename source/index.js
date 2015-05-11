@@ -1,22 +1,36 @@
 import EventEmitter from 'event-emitter';
-import ListenToEmitter from 'listeto-emitter';
-import extend from 'simple-extend';
+import ListenToEmitter from 'listento-emitter';
+import objExtend from 'simple-extend';
+import extend from 'extend';
+import hookie from 'hookie';
 
-export default class CoreObject extends EventEmitter {
-  constructor(opts={}) {
-    if (this.beforeSetup) this.beforeSetup(...arguments);
-    super(...arguments);
-    ListenToEmitter.mixin(this);
+export default function CoreObject() {
+  this._setup();
+}
 
-    if (this.setup) this.setup(...arguments);
-    if (this.afterSetup) this.afterSetup(...arguments);
-  }
+CoreObject.extend = objExtend;
 
-  get(prop) {
-    return this[prop]
-  }
+extend(CoreObject.prototype, EventEmitter.methods, ListenToEmitter, {
+  _setup: hookie('setup', function() {
+    this.setupListeners();
+    // this.setupBindings();
+    this.setup(...arguments);
+  }),
 
-  set(prop, val) {
+  destroy: hookie('destroy', function() {
+    this.cleanupListeners();
+    // this.cleanupBindings();
+    this.cleanup(...arguments);
+  }),
+
+  setup: function() { },
+  cleanup: function() { },
+
+  get: function (prop) {
+    return this[prop];
+  },
+
+  set: function (prop, val) {
     if (arguments.length > 1) {
       this[prop] = val;
       this.emit('set:' + prop, val, prop);
@@ -25,10 +39,4 @@ export default class CoreObject extends EventEmitter {
       this.emit('set', prop);
     }
   }
-
-  static create() {
-    return new CoreObject(...arguments);
-  }
-}
-
-CoreObject.extend = extend;
+});

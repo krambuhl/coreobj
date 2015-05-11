@@ -7,8 +7,7 @@
   "scripts": {
     "test": "tape tests/*.js | tap-spec",
     "build": "babel ./source -o ./dist/index.js",
-    "develop": "babel ./source -w -o ./dist/index.js",
-    "prepublish": "npm run build"
+    "develop": "babel ./source -w -o ./dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +20,8 @@
   },
   "dependencies": {
     "event-emitter": "^0.3.3",
+    "extend": "^2.0.1",
+    "hookie": "^0.1.1",
     "listento-emitter": "^0.1.0",
     "simple-extend": "^0.1.0"
   }
