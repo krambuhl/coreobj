@@ -1,20 +1,17 @@
 {
-  "name": "coreobj",
-  "description": "",
-  "homepage": "https://github.com/krambuhl/coreobj",
-  "version": "0.2.0",
-  "main": "dist/index.js",
+  "name": "kerno",
+  "description": "A core event object to be extended further ",
+  "homepage": "https://github.com/krambuhl/kerno",
+  "version": "0.1.0",
+  "main": "index.js",
   "scripts": {
-    "test": "tape tests/*.js | tap-spec",
-    "build": "babel ./source -o ./dist/index.js",
-    "develop": "babel ./source -w -o ./dist/index.js"
+    "test": "tape tests/*.js | tap-spec"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:krambuhl/coreobj.git"
+    "url": "git@github.com:krambuhl/kerno.git"
   },
   "devDependencies": {
-    "babel": "^5.2.5",
     "tap-spec": "^2.1.2",
     "tape": "^3.0.3"
   },
@@ -22,7 +19,8 @@
     "event-emitter": "^0.3.3",
     "extend": "^2.0.1",
     "hookie": "^0.1.1",
-    "listento-emitter": "^0.1.0",
+    "listento-emitter": "^0.1.1",
+    "mutators": "^0.1.1",
     "simple-extend": "^0.1.0"
   }
 }
